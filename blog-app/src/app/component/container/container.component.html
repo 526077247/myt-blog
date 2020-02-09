@@ -1,6 +1,6 @@
 <header class="container-header">
   <h1 class="container-header-title">
-    <a class="container-header-title-link d-inline-block" routerLink="/">首页</a>
+    <a class="container-header-title-link ml-5 d-inline-block" routerLink="/">首页</a>
     <a class="container-header-title-link ml-5 d-inline-block" *ngFor="let item of getTitle()"
        [routerLink]="'/list/'+item">{{getName(item)}}</a>
     <span class="container-header-controls">
