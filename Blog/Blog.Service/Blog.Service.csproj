@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Maps\BlogInfo.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Maps\BlogInfo.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Service.Core-PsFramework" Version="1.0.1" />
+  </ItemGroup>
+
+</Project>

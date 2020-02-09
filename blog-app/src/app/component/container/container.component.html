@@ -1,0 +1,41 @@
+<header class="container-header">
+  <h1 class="container-header-title">
+
+    <a class="container-header-title-link ml-5" routerLink="/">首页</a>
+    <a class="container-header-title-link ml-5" *ngFor="let item of getTitle()"
+       [routerLink]="'/list/'+item">{{getName(item)}}</a>
+    <!--    <a class="container-header-title-link ml-5" routerLink="/list/3">{{getNmae(3)}}</a>-->
+    <!--    <a class="container-header-title-link ml-5" routerLink="/list/2">.Net Core</a>-->
+    <!--    <a class="container-header-title-link ml-5" routerLink="/list/1">C++</a>-->
+    <!--    <a class="container-header-title-link ml-5" routerLink="/list/4">MySql</a>-->
+    <!--    <a class="container-header-title-link ml-5" routerLink="/list/5">Nginx</a>-->
+  </h1>
+  <div class="container-header-controls">
+    <!--    <div class="container-header-search">-->
+    <!--      <input class="container-header-search-input" placeholder="全局搜索">-->
+    <!--      <a href="javascript:" class="container-header-search-icon">-->
+    <!--        <span class="ion-ios-search"></span>-->
+    <!--      </a>-->
+    <!--    </div>-->
+    <!--    <a href="javascript:" class="container-header-control">-->
+    <!--      <span class="ion-ios-mail"></span>-->
+    <!--    </a>-->
+    <a href="javascript:" class="container-header-control " [class.active]="isOpen"
+       routerLink="/edit">
+      <span class="ion-ios-person ionicon"></span>
+    </a>
+  </div>
+</header>
+<!--<div class="personal-Info" *ngIf="isOpen">-->
+<!--  <div class="personal-Info-body">-->
+<!--    <p>用户账号：{{loginUser.UserId}}</p>-->
+<!--    <p>角色姓名：{{loginUser.NickName}}</p>-->
+<!--  </div>-->
+<!--  <div class="open-footer text-right">-->
+<!--    <button type="button" class="btn btn-sm btn-link" (click)="showEditPasswordModal()">修改密码</button>-->
+<!--    <button type="button" class="btn btn-sm btn-link" (click)="exit()">退出</button>-->
+<!--  </div>-->
+<!--</div>-->
+<section class="container-body">
+  <router-outlet></router-outlet>
+</section>

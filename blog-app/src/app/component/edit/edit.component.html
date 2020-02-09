@@ -1,0 +1,58 @@
+<div class="page">
+  <div class="page-left">
+    <markdown [data]="blogInfo.content"></markdown>
+  </div>
+  <div class="page-right">
+    <div class="panel-top">
+      <mat-toolbar class="panel-top-space">
+        <span>编辑区域</span>
+        <button mat-flat-button color="accent" class="panel-top-space-button" (click)="showAddBlogInfo(blogInfoModal)">
+          保存
+        </button>
+      </mat-toolbar>
+    </div>
+    <div class="panel-bottom">
+      <textarea [(ngModel)]="blogInfo.content" class="content-edit"></textarea>
+    </div>
+  </div>
+</div>
+
+<ng-template #blogInfoModal>
+  <header class="modal-header">
+    <h5 class="modal-title">编辑任务添加到任务队列</h5>
+  </header>
+  <section class="modal-body overflow-hidden">
+    <div class="ml-5">
+      <mat-form-field>
+        <input matInput placeholder="标题" [(ngModel)]="blogInfo.title" [formControl]="titleControl">
+        <mat-error *ngIf="titleControl.hasError('required')">请输入标题</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="ml-5">
+      <mat-form-field>
+        <mat-select placeholder="请选择类型" [formControl]="typeControl" [(ngModel)]="blogInfo.type" required>
+          <mat-option disabled [value]="0">-请选择-</mat-option>
+          <mat-option *ngFor="let item of getTitle()" [value]="item">{{getTypeContent(item)}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="typeControl.hasError('required')">请选择类型</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="ml-5">
+      <mat-form-field>
+        <mat-select placeholder="请选择状态" [formControl]="stateControl" [(ngModel)]="blogInfo.state" required>
+          <mat-option disabled [value]="0">-请选择-</mat-option>
+          <mat-option [value]="1">发布</mat-option>
+          <mat-option [value]="2">草稿</mat-option>
+        </mat-select>
+        <mat-error *ngIf="stateControl.hasError('required')">请选择状态</mat-error>
+      </mat-form-field>
+    </div>
+  </section>
+  <footer class="modal-footer">
+    <button mat-flat-button color="accent" class="ml-1"
+            [disabled]="titleControl.hasError('required')||typeControl.hasError('min')||stateControl.hasError('min')"
+            (click)="addOrUpdateBlogInfo()">确定
+    </button>
+    <button mat-flat-button (click)="modalRef.hide()">关闭</button>
+  </footer>
+</ng-template>

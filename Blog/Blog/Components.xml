@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  
+  <components>
+    <!--Dao管理-->
+    <component type="service.core.DaoManager, service.core" service="service.core.IDaoManager, service.core"/>
+    <!--缓存管理-->
+    <component type="service.core.CacheManager, service.core" service="service.core.ICacheManager, service.core"/>
+    
+    <!--用户管理-->
+    <component id="CheckLoginMgeSvr" type="Blog.Service.CheckLoginMgeSvr, Blog.Service" service="service.core.ICheckLoginMgeSvr, service.core"/>
+    
+    <!--用户管理-->
+    <component id="BlogInfoMgeSvr" type="Blog.Service.BlogInfoMgeSvr, Blog.Service" service="Blog.Service.IBlogInfoMgeSvr, Blog.Service"/>
+    
+    
+  </components>
+</configuration>

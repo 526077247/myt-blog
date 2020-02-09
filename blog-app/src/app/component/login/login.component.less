@@ -1,0 +1,92 @@
+@import "../../../color";
+
+.page-backdrop {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+
+
+  &-img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: 0;
+  }
+}
+
+.login-card {
+  width: 340px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 1px solid @borderColor;
+  background: rgba(255, 255, 255, .9);
+  border-radius: 4px;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+
+  &-header {
+    padding: 10px 15px;
+  }
+
+  &-title {
+    border-left: 2px solid @mainColor;
+    padding-left: 8px;
+    line-height: 1;
+  }
+
+  &-body {
+    padding: 20px 15px;
+  }
+}
+
+.login-input {
+  text-indent: 40px;
+  font-size: 1.75rem;
+
+  &:focus {
+    border-color: @mainColor;
+    outline: none;
+    box-shadow: 0 0 5px 0 lighten(@mainColor, 10%);
+
+    & + .login-icon {
+      color: @mainColor;
+    }
+  }
+}
+
+.login-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 38px;
+  line-height: 38px;
+  font-size: 26px;
+  width: 38px;
+  text-align: center;
+  color: #808080;
+}
+
+.btn-login {
+  background: @mainColor;
+  border: 1px solid darken(@mainColor, 10%);
+  color: #fff;
+  box-shadow: none;
+  font-size: 1.75rem;
+
+  &:hover {
+    background: lighten(@mainColor, 10%);
+    color: #fff;
+  }
+
+  &:active {
+    color: #fff;
+    background: darken(@mainColor, 10%);
+  }
+
+  &:focus {
+    color: #fff;
+  }
+}

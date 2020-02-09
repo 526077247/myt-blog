@@ -1,0 +1,21 @@
+<!--<div class="page-backdrop">-->
+<!--  <img src="assets/images/1.jpg" alt="背景" class="page-backdrop-img">-->
+<!--</div>-->
+<div class="login-card">
+  <div class="login-card-header">
+    <h3 class="login-card-title">登陆</h3>
+  </div>
+  <div class="login-card-body">
+    <div class="form-group position-relative">
+      <input class="form-control login-input" autocomplete="off" [(ngModel)]="username" (keyup)="selectParaChange($event)">
+      <span class="ion-md-person login-icon"></span>
+    </div>
+    <div class="form-group position-relative">
+      <input type="password" class="form-control login-input" autocomplete="off" [(ngModel)]="password" (keyup)="selectParaChange($event)">
+      <span class="ion-ios-lock login-icon"></span>
+    </div>
+    <div>
+      <button type="button" class="btn btn-login w-100" (click)="login()">登录</button>
+    </div>
+  </div>
+</div>

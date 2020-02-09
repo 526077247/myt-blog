@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+<sqlMap
+	namespace="Blog.Service"
+	xmlns="http://ibatis.apache.org/mapping"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="BlogInfo" assembly="Blog.Service.dll" type="Blog.Service.BlogInfo, Blog.Service" />
+  </alias>
+
+  <resultMaps>
+
+    <resultMap id="BlogInfoResult" class="BlogInfo">
+      <result property="id" column="id" />
+      <result property="title" column="title" />
+      <result property="content" column="content" />
+      <result property="createTime" column="createTime" />
+      <result property="type" column="type" />
+      <result property="state" column="state" />
+    </resultMap>
+  </resultMaps>
+
+  <parameterMaps>
+
+    <parameterMap id="BlogInfoParams" class="BlogInfo">
+      <parameter property="id" column="id" />
+      <parameter property="title" column="title" />
+      <parameter property="content" column="content" />
+      <parameter property="createTime" column="createTime" />
+      <parameter property="type" column="type" />
+      <parameter property="state" column="state" />
+    </parameterMap>
+
+    <parameterMap id="UpdateBlogInfoParams" extends="BlogInfoParams" class="BlogInfo">
+      <parameter property="id" column="id" />
+    </parameterMap>
+
+  </parameterMaps>
+
+  <statements>
+
+    <select id="GetBlogInfoCount"  resultClass="int">
+      SELECT count(*)
+      FROM BlogInfo;
+    </select>
+
+    <select id="GetBlogInfo"  parameterClass="BlogInfo" resultMap="BlogInfoResult">
+      SELECT *
+      FROM BlogInfo
+      WHERE (id = #id#) ;
+    </select>
+
+    <select id="GetBlogInfoByPara"  parameterClass="BlogInfo" resultMap="BlogInfoResult">
+      SELECT id,title,createTime,type,state,'' as content
+      FROM BlogInfo
+      <dynamic prepend="WHERE" >
+        <isNotEmpty prepend="AND" property="id" >
+          id = #id#
+        </isNotEmpty>
+        <isNotEmpty prepend="AND" property="title" >
+          title = #title# 
+        </isNotEmpty>
+        <isNotEmpty prepend="AND" property="createTime_S" >
+          createTime between #createTime_S# and #createTime_E#
+        </isNotEmpty>
+        <isNotEmpty prepend="AND" property="type" >
+          type =  #type#
+        </isNotEmpty>
+        <isNotEmpty prepend="AND" property="type_IN" >
+          (type in ($type_IN$))
+        </isNotEmpty>
+        <isNotEmpty prepend="AND" property="state" >
+          state =  #state#
+        </isNotEmpty>
+      </dynamic>
+
+    </select>
+
+    <select id="GetBlogInfoList" parameterClass="string" resultMap="BlogInfoResult">
+      SELECT id,title,createTime,type,state,'' as content
+      FROM BlogInfo
+      <dynamic prepend="Order By" >
+        <isNotEmpty prepend="Order By" property="_OrderBy">
+          <isEqual compareValue="createTime" property="_OrderBy">
+            createTime
+          </isEqual>
+          <isEqual compareValue="createTime_D" property="_OrderBy">
+            createTime desc
+          </isEqual>
+        </isNotEmpty>
+      </dynamic>
+    </select>
+    
+    <select id="QueryBlogInfoCount" parameterClass="Hashtable" resultClass="int">
+      SELECT count(*)
+      FROM BlogInfo
+      <dynamic prepend="WHERE" >
+        <isNotEmpty prepend="AND" property="id" >
+          id = #id#
+        </isNotEmpty>
+        <isNotEmpty prepend="AND" property="title" >
+          title = #title#
+        </isNotEmpty>
+        <isNotEmpty prepend="AND" property="createTime_S" >
+          createTime between #createTime_S# and #createTime_E#
+        </isNotEmpty>
+        <isNotEmpty prepend="AND" property="type" >
+          type =  #type#
+        </isNotEmpty>
+        <isNotEmpty prepend="AND" property="type_IN" >
+          (type in ($type_IN$))
+        </isNotEmpty>
+        <isNotEmpty prepend="AND" property="state" >
+          state =  #state#
+        </isNotEmpty>
+      </dynamic>
+    </select>
+    
+    <select id="GetAdjacentBlogInfo" parameterClass="Hashtable" resultMap="BlogInfoResult">
+      <![CDATA[
+        (SELECT id,title,createTime,type,state,'' as content
+        FROM BlogInfo
+        where createTime < #createTime# and type = #type# order by createTime desc limit 1)
+        union
+        (SELECT id,title,createTime,type,state,'' as content
+        FROM BlogInfo
+        where createTime > #createTime# and type = #type# order by createTime limit 1)
+      ]]>
+    </select>
+
+    <select id="QueryBlogInfoList" parameterClass="Hashtable" resultMap="BlogInfoResult">
+      SELECT id,title,createTime,type,state,'' as content
+      FROM BlogInfo
+      <dynamic prepend="WHERE" >
+        <isNotEmpty prepend="AND" property="id" >
+          id = #id#
+        </isNotEmpty>
+        <isNotEmpty prepend="AND" property="title" >
+          title = #title#
+        </isNotEmpty>
+        <isNotEmpty prepend="AND" property="createTime_S" >
+          createTime between #createTime_S# and #createTime_E#
+        </isNotEmpty>
+        <isNotEmpty prepend="AND" property="type" >
+          type =  #type#
+        </isNotEmpty>
+        <isNotEmpty prepend="AND" property="type_IN" >
+          (type in ($type_IN$))
+        </isNotEmpty>
+        <isNotEmpty prepend="AND" property="state" >
+          state =  #state#
+        </isNotEmpty>
+      </dynamic>
+      <dynamic prepend="Order By" >
+        <isNotEmpty prepend="Order By" property="_OrderBy" >
+          <isEqual compareValue="createTime" property="_OrderBy">
+            createTime
+          </isEqual>
+          <isEqual compareValue="createTime_D" property="_OrderBy">
+            createTime desc
+          </isEqual>
+        </isNotEmpty>
+      </dynamic>
+    </select>
+
+    <insert id="InsertBlogInfo" parameterMap="BlogInfoParams">
+      <generate table="BlogInfo" />
+    </insert>
+
+    <delete id="DeleteBlogInfo" parameterClass="BlogInfo">
+      DELETE FROM BlogInfo WHERE (id = #id#) ;
+    </delete>
+
+    <select id="DeleteBlogInfoByPara" parameterClass="BlogInfo">
+      DELETE FROM BlogInfo
+      <dynamic prepend="WHERE" >
+        <isNotEmpty prepend="AND" property="id" >
+          id = #id#
+        </isNotEmpty>
+        <isNotEmpty prepend="AND" property="title" >
+          title = #title#
+        </isNotEmpty>
+        <isNotEmpty prepend="AND" property="createTime_S" >
+          createTime between #createTime_S# and #createTime_E#
+        </isNotEmpty>
+        <isNotEmpty prepend="AND" property="type" >
+          type =  #type#
+        </isNotEmpty>
+        <isNotEmpty prepend="AND" property="type_IN" >
+          (type in ($type_IN$))
+        </isNotEmpty>
+        <isNotEmpty prepend="AND" property="state" >
+          state =  #state#
+        </isNotEmpty>
+      </dynamic>
+    </select>
+
+    <update id="UpdateBlogInfo" parameterMap="UpdateBlogInfoParams">
+      UPDATE BlogInfo SET
+      id = ?,
+      title = ?,
+      content = ?,
+      createTime = ?,
+      type = ?,
+      state = ?
+      WHERE id = ?;
+    </update>
+
+
+  </statements>
+
+</sqlMap>

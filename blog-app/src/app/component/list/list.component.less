@@ -1,0 +1,64 @@
+
+.page {
+  position: relative;
+  overflow: auto;
+  height: 100%;
+
+  &-loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }
+
+  &-item.disabled &-link {
+    background-color: transparent;
+
+    &.active {
+      background-color: transparent;
+    }
+  }
+
+  &-link {
+    box-shadow: none;
+    background-color: transparent;
+
+    &.active {
+      background-color: transparent;
+    }
+  }
+
+  &-body {
+    position: relative;
+    background: hsla(0, 0%, 100%, .6);
+    min-height: 100%;
+    padding-bottom: 80px;
+  }
+
+  &-num {
+    display: inline-block;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+}
+
+.ionicon {
+  line-height: 0;
+}
+
+.item {
+  cursor: pointer;
+
+  &:hover {
+    background: hsla(0, 0%, 100%, .6);
+  }
+}
+
+.iconfont {
+  font-family: "iconfont", serif !important;
+  line-height: 1;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

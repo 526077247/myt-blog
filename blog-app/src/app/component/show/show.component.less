@@ -1,0 +1,43 @@
+.page {
+  position: relative;
+  overflow: auto;
+  height: 100%;
+
+  &-loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }
+
+  &-content {
+
+  }
+
+  &-body {
+    background: hsla(0, 0%, 100%, .6);
+    min-height: 100%;
+  }
+}
+
+span {
+  color: dodgerblue;
+
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  &.disabled {
+    color: #282828;
+    cursor: auto;
+    text-decoration: none;
+  }
+}
+
+.jumbotron {
+  background: hsla(0, 0%, 100%, .6);
+}
+
+.ionicon {
+  font-size: 26px;
+}

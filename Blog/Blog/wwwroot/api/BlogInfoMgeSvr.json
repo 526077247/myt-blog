@@ -1,0 +1,5 @@
+{
+  "SvrID": "BlogInfoMgeSvr",
+  "IntfName": "Blog.Service.IBlogInfoMgeSvr",
+  "IntfAssembly": "Blog.Service"
+}

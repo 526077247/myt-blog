@@ -1,0 +1,153 @@
+.container {
+  &-header {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 4rem;
+    background: #282828;
+    box-shadow: 0px -2px 5px 0px #a1a2a5;
+    overflow: hidden;
+
+    //padding: 0 1rem;
+    &.active {
+      z-index: 12;
+    }
+
+    &::after {
+      content: '';
+      display: block;
+      clear: both;
+    }
+
+    &-title {
+      color: #fff;
+      margin: 0;
+      line-height: 4rem;
+      font-size: 2.4rem;
+
+      &-link {
+        text-decoration: none;
+        color: #fff;
+
+        &:hover {
+          color: #aaa;
+        }
+      }
+    }
+
+    &-controls {
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: .5rem 1rem;
+
+
+    }
+
+    &-control {
+      display: inline-block;
+      width: 3rem;
+      height: 3rem;
+      text-decoration: none;
+      text-align: center;
+      line-height: 3rem;
+      color: #a1a2a5;
+      font-size: 2rem;
+      margin-left: 1rem;
+
+      &:hover {
+        color: #fff;
+      }
+
+      &.active {
+        background: rgba(255, 255, 255, .3) !important;
+      }
+    }
+
+    &-menu {
+      display: inline-block;
+      width: 3rem;
+      height: 3rem;
+      text-decoration: none;
+      text-align: center;
+      line-height: 3rem;
+      color: #a1a2a5;
+      font-size: 2rem;
+
+      &:hover {
+        color: #fff;
+      }
+
+      &.active {
+        background: rgba(255, 255, 255, .3) !important;
+      }
+    }
+
+    &-search {
+      display: inline-block;
+      float: left;
+      position: relative;
+      padding: .3rem 0;
+
+      &-input {
+        height: 2.4rem;
+        line-height: 2.4rem;
+        border-radius: 4px;
+        box-sizing: border-box;
+        padding: 0 2rem 0 1rem;
+        border: 0;
+        outline: none;
+        background: rgba(255, 255, 255, .8);
+        transition: .3s;
+
+        &:focus {
+          background: rgb(255, 255, 255);
+        }
+      }
+
+      &-icon {
+        position: absolute;
+        top: 0;
+        right: .5rem;
+        line-height: 3rem;
+        color: #a1a2a5;
+        font-size: 1.6rem;
+      }
+    }
+  }
+
+  &-body {
+    position: absolute;
+    top: 4rem;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: 10;
+  }
+}
+
+.ionicon {
+  font-size: 28px;
+}
+
+.personal-Info {
+  z-index: 999;
+  position: absolute;
+  right: 10px;
+  top: 50px;
+  border: 1px solid #aaa;
+  background: white;
+
+  &-body {
+    padding: 10px;
+  }
+
+  &-footer {
+    background: #eee;
+  }
+}
+
+
+

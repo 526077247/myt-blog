@@ -1,0 +1,42 @@
+<div class="page">
+  <div class="container page-body">
+    <div *ngIf="isLoading" class="d-flex justify-content-center page-loading">
+      <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+    <ng-container *ngIf="!isLoading">
+      <mat-list>
+        <h1 mat-subheader>{{getShowName()}}</h1>
+        <mat-list-item *ngFor="let blog of blogs" class="item" (click)="showblog(blog)">
+          <mat-icon mat-list-icon class="iconfont " [ngClass]="getIconClass(blog)"></mat-icon>
+          <h2 mat-line>{{blog.title}}</h2>
+          <p mat-line> {{blog.createTime | date}} </p>
+        </mat-list-item>
+      </mat-list>
+      <nav aria-label="..." class="page-num mt-2">
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" href="javascript:" (click)="changePage(1)">首页</a>
+          </li>
+          <li class="page-item" [ngClass]="{'disabled':pageNow===1}">
+            <a class="page-link" href="javascript:" (click)="changePage(pageNow - 1)">上一页</a>
+          </li>
+          <li *ngFor="let n of getShowNum()" class="page-item" [ngClass]="{'active':n===pageNow}">
+            <a *ngIf="n!==pageNow" class="page-link" href="javascript:" (click)="changePage(n)">{{n}}</a>
+            <span *ngIf="n===pageNow" class="page-link ">
+              {{n}}
+              <span class="sr-only">(current)</span>
+            </span>
+          </li>
+          <li class="page-item" [ngClass]="{'disabled':pageNow===pageCount}">
+            <a class="page-link" href="javascript:" (click)="changePage(pageNow + 1)">下一页</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="javascript:" (click)="changePage(pageCount)">末页</a>
+          </li>
+        </ul>
+      </nav>
+    </ng-container>
+  </div>
+</div>
