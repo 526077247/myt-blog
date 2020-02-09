@@ -1,30 +1,16 @@
 <header class="container-header">
   <h1 class="container-header-title">
-
-    <a class="container-header-title-link ml-5" routerLink="/">首页</a>
-    <a class="container-header-title-link ml-5" *ngFor="let item of getTitle()"
+    <a class="container-header-title-link d-inline-block" routerLink="/">首页</a>
+    <a class="container-header-title-link ml-5 d-inline-block" *ngFor="let item of getTitle()"
        [routerLink]="'/list/'+item">{{getName(item)}}</a>
-    <!--    <a class="container-header-title-link ml-5" routerLink="/list/3">{{getNmae(3)}}</a>-->
-    <!--    <a class="container-header-title-link ml-5" routerLink="/list/2">.Net Core</a>-->
-    <!--    <a class="container-header-title-link ml-5" routerLink="/list/1">C++</a>-->
-    <!--    <a class="container-header-title-link ml-5" routerLink="/list/4">MySql</a>-->
-    <!--    <a class="container-header-title-link ml-5" routerLink="/list/5">Nginx</a>-->
+    <span class="container-header-controls">
+      <a href="javascript:" class="container-header-control " [class.active]="isOpen"
+         routerLink="/edit">
+        <span class="ion-ios-person ionicon"></span>
+      </a>
+    </span>
   </h1>
-  <div class="container-header-controls">
-    <!--    <div class="container-header-search">-->
-    <!--      <input class="container-header-search-input" placeholder="全局搜索">-->
-    <!--      <a href="javascript:" class="container-header-search-icon">-->
-    <!--        <span class="ion-ios-search"></span>-->
-    <!--      </a>-->
-    <!--    </div>-->
-    <!--    <a href="javascript:" class="container-header-control">-->
-    <!--      <span class="ion-ios-mail"></span>-->
-    <!--    </a>-->
-    <a href="javascript:" class="container-header-control " [class.active]="isOpen"
-       routerLink="/edit">
-      <span class="ion-ios-person ionicon"></span>
-    </a>
-  </div>
+
 </header>
 <!--<div class="personal-Info" *ngIf="isOpen">-->
 <!--  <div class="personal-Info-body">-->
