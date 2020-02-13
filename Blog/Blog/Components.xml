@@ -10,7 +10,7 @@
     <!--用户管理-->
     <component id="CheckLoginMgeSvr" type="Blog.Service.CheckLoginMgeSvr, Blog.Service" service="service.core.ICheckLoginMgeSvr, service.core"/>
     
-    <!--用户管理-->
+    <!--博客文章管理-->
     <component id="BlogInfoMgeSvr" type="Blog.Service.BlogInfoMgeSvr, Blog.Service" service="Blog.Service.IBlogInfoMgeSvr, Blog.Service"/>
     
     
