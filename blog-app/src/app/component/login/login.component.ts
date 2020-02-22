@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {LoginAuthorService} from '../../service/login-author.service';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login',
@@ -11,11 +12,13 @@ export class LoginComponent implements OnInit {
   public password = '';
 
   constructor(
-    private loginSvr: LoginAuthorService
+    private loginSvr: LoginAuthorService,
+    private titleService: Title,
   ) {
   }
 
   ngOnInit() {
+    this.titleService.setTitle('登录');
   }
 
   /**

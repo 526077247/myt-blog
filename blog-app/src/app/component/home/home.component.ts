@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {BlogInfo} from '../../domain/bloginfo.domain';
 import {MatSnackBar} from '@angular/material';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -11,11 +12,14 @@ export class HomeComponent implements OnInit {
   public blogInfo: BlogInfo = new BlogInfo();
 
 
-  constructor(public snackBar: MatSnackBar) {
+  constructor(
+    private snackBar: MatSnackBar,
+    private titleService: Title
+  ) {
   }
 
   ngOnInit() {
-
+    this.titleService.setTitle('泊');
   }
 
 }

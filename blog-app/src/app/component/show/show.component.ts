@@ -4,6 +4,7 @@ import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {BlogInfoMgeSvr} from '../../service/blog-info-mge.service';
 import {MatSnackBar} from '@angular/material';
 import {LoginAuthorService} from '../../service/login-author.service';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-show',
@@ -23,6 +24,7 @@ export class ShowComponent implements OnInit {
     private blogInfoMgeSvr: BlogInfoMgeSvr,
     private loginSvr: LoginAuthorService,
     private snackBar: MatSnackBar,
+    private titleService: Title
   ) {
     router.events.subscribe(Event => {
       this.isLoading = true;
@@ -50,6 +52,7 @@ export class ShowComponent implements OnInit {
           this.router.navigateByUrl('/404');
         } else {
           this.blogInfo = res;
+          this.titleService.setTitle(this.blogInfo.title);
           this.preBlog = null;
           this.afterBlog = null;
           this.blogInfoMgeSvr.GetAdjacentBlogInfo(res).then(res2 => {

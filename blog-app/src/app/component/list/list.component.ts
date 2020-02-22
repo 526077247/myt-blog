@@ -4,6 +4,7 @@ import {BlogInfoMgeSvr} from '../../service/blog-info-mge.service';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {TYPE_OF_BLOG} from '../../domain/global.enum';
 import {TypeMeaningService} from '../../service/type-meaning.service';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-list',
@@ -23,6 +24,7 @@ export class ListComponent implements OnInit {
     private router: Router,
     private blogInfoMgeSvr: BlogInfoMgeSvr,
     private typeMeaningService: TypeMeaningService,
+    private titleService: Title,
   ) {
     router.events.subscribe(Event => {
       this.isLoading = true;
@@ -31,6 +33,7 @@ export class ListComponent implements OnInit {
         if (!this.type || this.type !== type) {
           this.type = type;
           this.getBlogList();
+          this.titleService.setTitle(TYPE_OF_BLOG[this.type]);
         }
       }
     });

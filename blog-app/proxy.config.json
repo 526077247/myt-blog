@@ -1,8 +1,10 @@
 {
   "/api": {
-    "target": "http://182.254.172.111:80"
+    "target": "https://www.mayuntao.xyz",
+    "changeOrigin": true
   },
   "/Service": {
-    "target": "http://182.254.172.111:80"
+    "target": "https://www.mayuntao.xyz",
+    "changeOrigin": true
   }
 }
