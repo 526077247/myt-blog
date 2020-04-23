@@ -2,8 +2,7 @@
 <configuration>
   
   <components>
-    <!--Dao管理-->
-    <component type="service.core.DaoManager, service.core" service="service.core.IDaoManager, service.core"/>
+
     <!--缓存管理-->
     <component type="service.core.CacheManager, service.core" service="service.core.ICacheManager, service.core"/>
     

@@ -20,10 +20,7 @@ Release/
 obj/
 /.vs/
 
-lililili/SqlMap.config
 source/UI/Innocellence\.Web/App_Data/Logs/
-lililili/SqlMap.config
-*.config
 Blog/.vs/Blog/
 blog-app/dist/
 blog-app/.idea/

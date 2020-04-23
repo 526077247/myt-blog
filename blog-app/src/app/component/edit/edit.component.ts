@@ -3,7 +3,6 @@ import {BlogInfo} from 'src/app/domain/bloginfo.domain';
 import {BlogInfoMgeSvr} from '../../service/blog-info-mge.service';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap';
 import {FormControl, Validators} from '@angular/forms';
-import {TYPE_OF_BLOG} from '../../domain/global.enum';
 import {LoginAuthorService} from '../../service/login-author.service';
 import {MatSnackBar} from '@angular/material';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
@@ -122,7 +121,7 @@ export class EditComponent implements OnInit {
    * 获取类型含义
    */
   public getTypeContent(type: number): string {
-    return TYPE_OF_BLOG[type];
+    return this.typeMeaningService.getTypeName(type);
   }
 
   /**

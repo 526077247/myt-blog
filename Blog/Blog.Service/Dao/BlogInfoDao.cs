@@ -1,4 +1,5 @@
 ﻿
+using IBatisNet.DataAccess.Interfaces;
 using service.core;
 using System;
 using System.Collections;
@@ -10,13 +11,16 @@ namespace Blog.Service
 
     public interface IBlogInfoDao : IBaseDao, IDao
     {
-        
+        IList GetAdjacentBlogInfo(Hashtable map, int start, int paseSize);
     }
 
     public class BlogInfoDao : BaseDao, IBlogInfoDao
     {
         #region IBlogInfoDao函数
-       
+        public IList GetAdjacentBlogInfo(Hashtable map, int start, int paseSize)
+        {
+            return QueryList(map, "GetAdjacentBlogInfo", start, paseSize);
+        }
         #endregion
 
         #region IDao函数

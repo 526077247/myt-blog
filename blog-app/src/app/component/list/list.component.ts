@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {BlogInfo} from '../../domain/bloginfo.domain';
 import {BlogInfoMgeSvr} from '../../service/blog-info-mge.service';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
-import {TYPE_OF_BLOG} from '../../domain/global.enum';
 import {TypeMeaningService} from '../../service/type-meaning.service';
 import {Title} from '@angular/platform-browser';
 
@@ -33,7 +32,7 @@ export class ListComponent implements OnInit {
         if (!this.type || this.type !== type) {
           this.type = type;
           this.getBlogList();
-          this.titleService.setTitle(TYPE_OF_BLOG[this.type]);
+          this.titleService.setTitle(this.typeMeaningService.getTypeName(this.type));
         }
       }
     });
@@ -109,7 +108,7 @@ export class ListComponent implements OnInit {
     * 取展示名称
     * */
   public getShowName(): string {
-    return TYPE_OF_BLOG[this.type];
+    return this.typeMeaningService.getTypeName(this.type);
   }
 
   /*

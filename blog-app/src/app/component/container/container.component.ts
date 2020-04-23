@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {TYPE_OF_BLOG} from '../../domain/global.enum';
 import {TypeMeaningService} from 'src/app/service/type-meaning.service';
 
 @Component({
@@ -23,7 +22,7 @@ export class ContainerComponent implements OnInit {
   * 获取类型名称
   * */
   public getName(type: number): string {
-    return TYPE_OF_BLOG[type];
+    return this.typeMeaningService.getTypeName(type);
   }
 
 

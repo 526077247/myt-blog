@@ -1,4 +1,5 @@
-﻿using service.core;
+﻿using IBatisNet.DataAccess;
+using service.core;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -20,8 +21,8 @@ namespace Blog.Service
         /// </summary>
         public BlogInfoMgeSvr() : base()
         {
-            daoManager = (IDaoManager)ServiceManager.GetService(typeof(IDaoManager));
-            _BlogInfoDao = (IBlogInfoDao)daoManager.GetDao<IBlogInfoDao>();
+            daoManager = ServiceConfig.GetInstance().DaoManager;
+            _BlogInfoDao = (IBlogInfoDao)daoManager.GetDao(typeof(IBlogInfoDao));
         }
 
         #endregion
@@ -145,7 +146,7 @@ namespace Blog.Service
             Hashtable para = new Hashtable();
             para.Add("type", blogInfo.type);
             para.Add("createTime", blogInfo.createTime);
-            var list = _BlogInfoDao.QueryList(para, "GetAdjacentBlogInfo", 0, -1);
+            var list = _BlogInfoDao.GetAdjacentBlogInfo(para, 0, -1);
             if (list.Count > 0)
             {
                 foreach (BlogInfo Info in list)
