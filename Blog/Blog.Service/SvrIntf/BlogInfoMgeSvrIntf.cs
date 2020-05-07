@@ -56,7 +56,7 @@ namespace Blog.Service
         /// <param name="createTimeE">创建时间止</param>
         /// <returns></returns>
         [PublishMethod]
-        DataList<BlogInfo> QueryList(int start, int pageSize, string types, string createTimeS = "2000-01-01T00:00:00", string createTimeE = "2099-01-01T00:00:00");
+        ResultList<BlogInfo> QueryList(int start, int pageSize, string types, string createTimeS = "2000-01-01T00:00:00", string createTimeE = "2099-01-01T00:00:00");
 
         /// <summary>
         /// 取相邻记录
@@ -64,6 +64,6 @@ namespace Blog.Service
         /// <param name="blogInfo"></param>
         /// <returns></returns>
         [PublishMethod]
-        DataList<BlogInfo> GetAdjacentBlogInfo(BlogInfo blogInfo);
+        ResultList<BlogInfo> GetAdjacentBlogInfo(BlogInfo blogInfo);
     }
 }

@@ -1,0 +1,42 @@
+[
+  {
+    "name": "C++",
+    "id": 1,
+    "icon": "icon-cpp"
+  },
+  {
+    "name": ".NetCore",
+    "id": 2,
+    "icon": "icon-csharp"
+  },
+  {
+    "name": "Angular",
+    "id": 3,
+    "icon": "icon-angular"
+  },
+  {
+    "name": "MySQL",
+    "id": 4,
+    "icon": "icon-mysql"
+  },
+  {
+    "name": "Nginx",
+    "id": 5,
+    "icon": "icon-nginx"
+  },
+  {
+    "name": "Unity3D",
+    "id": 6,
+    "icon": "icon-u3d"
+  },
+  {
+    "name": "Node",
+    "id": 7,
+    "icon": "icon-node"
+  },
+  {
+    "name": "Vue",
+    "id": 8,
+    "icon": "icon-vue"
+  }
+]

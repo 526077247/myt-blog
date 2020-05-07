@@ -11,7 +11,7 @@ namespace Blog.Service
         private ILoginMgeSvr _LoginMgeSvr = null;
         public CheckLoginMgeSvr() : base()
         {
-            _LoginMgeSvr = DynServerFactory.CreateServer<ILoginMgeSvr>("http://127.0.0.1/Service/LoginMgeSvr.assx");
+            _LoginMgeSvr = DynServerFactory.CreateServer<ILoginMgeSvr>("http://47.98.50.215/Service/LoginMgeSvr.assx");
         }
 
         public bool CheckLogin(string token)

@@ -107,13 +107,13 @@ namespace Blog.Service
         /// <param name="createTimeE">创建时间止</param>
         /// <returns></returns>
         [PublishMethod]
-        public DataList<BlogInfo> QueryList(int start, int pageSize, string types, string createTimeS = "2000-01-01T00:00:00", string createTimeE = "2099-01-01T00:00:00")
+        public ResultList<BlogInfo> QueryList(int start, int pageSize, string types, string createTimeS = "2000-01-01T00:00:00", string createTimeE = "2099-01-01T00:00:00")
         {
             if (pageSize > 20)
                 pageSize = 20;
             else if (pageSize < 5)
                 pageSize = 5;
-            DataList<BlogInfo> infos = new DataList<BlogInfo>();
+            ResultList<BlogInfo> infos = new ResultList<BlogInfo>();
             Hashtable para = new Hashtable();
             para.Add("type_IN", types);
             para.Add("createTime_S", FormatDate(createTimeS));
@@ -140,9 +140,9 @@ namespace Blog.Service
         /// <param name="blogInfo"></param>
         /// <returns></returns>
         [PublishMethod]
-        public DataList<BlogInfo> GetAdjacentBlogInfo(BlogInfo blogInfo)
+        public ResultList<BlogInfo> GetAdjacentBlogInfo(BlogInfo blogInfo)
         {
-            DataList<BlogInfo> infos = new DataList<BlogInfo>();
+            ResultList<BlogInfo> infos = new ResultList<BlogInfo>();
             Hashtable para = new Hashtable();
             para.Add("type", blogInfo.type);
             para.Add("createTime", blogInfo.createTime);
