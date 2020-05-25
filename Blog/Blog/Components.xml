@@ -5,10 +5,16 @@
 
     <!--缓存管理-->
     <component type="service.core.CacheManager, service.core" service="service.core.ICacheManager, service.core"/>
-    
+    <!--登录服务-->
+    <component id="LoginMgeSvr" type="service.core.ProxyService, service.core" service="service.core.IProxyService, service.core">
+      <parameters>
+        <service>sso.core.ILoginMgeSvr, ModelDesign.Service</service>
+        <url>http://47.98.50.215/Service/LoginMgeSvr.assx</url>
+      </parameters>
+    </component>
     <!--用户管理-->
     <component id="CheckLoginMgeSvr" type="Blog.Service.CheckLoginMgeSvr, Blog.Service" service="service.core.ICheckLoginMgeSvr, service.core"/>
-    
+
     <!--博客文章管理-->
     <component id="BlogInfoMgeSvr" type="Blog.Service.BlogInfoMgeSvr, Blog.Service" service="Blog.Service.IBlogInfoMgeSvr, Blog.Service"/>
     
