@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Service.Core-PsFramework" Version="1.0.13" />
+    <PackageReference Include="Service.Core-PsFramework" Version="1.0.14" />
   </ItemGroup>
 
   <ItemGroup>
