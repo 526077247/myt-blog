@@ -27,7 +27,7 @@
     "ionicons": "^4.6.2",
     "bootstrap": "^4.3.1",
     "ngx-bootstrap": "^5.1.1",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "popper.js": "^1.15.0",
     "ngx-markdown": "^8.2.2"
   },
