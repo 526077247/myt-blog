@@ -103,11 +103,12 @@ namespace Blog.Service
         /// <param name="start">起始位置</param>
         /// <param name="pageSize">分页大小</param>
         /// <param name="types">类型字符串','隔开</param>
+        /// <param name="key">标题关键字</param>
         /// <param name="createTimeS">创建时间起</param>
         /// <param name="createTimeE">创建时间止</param>
         /// <returns></returns>
         [PublishMethod]
-        public ResultList<BlogInfo> QueryList(int start, int pageSize, string types, string createTimeS = "2000-01-01T00:00:00", string createTimeE = "2099-01-01T00:00:00")
+        public ResultList<BlogInfo> QueryList(int start, int pageSize, string types, string key = "", string createTimeS = "2000-01-01T00:00:00", string createTimeE = "2099-01-01T00:00:00")
         {
             if (pageSize > 20)
                 pageSize = 20;
@@ -119,6 +120,7 @@ namespace Blog.Service
             para.Add("createTime_S", FormatDate(createTimeS));
             para.Add("createTime_E", FormatDate(createTimeE));
             para.Add("_OrderBy", "createTime_D");
+            para.Add("title_LIKE", key);
             int total = _BlogInfoDao.QueryCount(para);
             var list = _BlogInfoDao.QueryList(para, start, pageSize);
             if (list.Count > 0)

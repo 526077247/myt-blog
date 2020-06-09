@@ -30,7 +30,6 @@
     "jquery": "^3.4.1",
     "popper.js": "^1.15.0",
     "ngx-markdown": "^8.2.2"
-
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.803.3",

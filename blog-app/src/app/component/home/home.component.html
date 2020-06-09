@@ -1,9 +1,26 @@
-<span>GitHub：<a target="_blank" href="https://github.com/526077247/myt-blog">https://github.com/526077247/myt-blog</a></span>
+<span>GitHub：<a target="_blank"
+                href="https://github.com/526077247/myt-blog">https://github.com/526077247/myt-blog</a></span>
+<!--<div class="space">-->
 
+<!--</div>-->
+<div class="input-group space mb-3">
+  <input type="text" class="form-control key-input" placeholder="输入关键字搜索" [(ngModel)]="keyword"
+         (keyup)="selectParaChange($event)">
+  <div class="input-group-append ">
+    <button class="btn btn-outline-secondary" type="button" (click)="pageChange()">
+      <span class="ion-ios-search ionicons"></span>
+    </button>
+  </div>
+</div>
+<!--<div class="input-group">-->
+<!--  <input class="key-input" placeholder="输入关键字搜索">-->
+<!--  <span class="ion-ios-search ionicons"></span>-->
+<!--</div>-->
 <div class="page-footer text-right">
   <span class="text-bottom mx-2">蜀ICP备20003689号</span>
   <span class="mx-2">
-    <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51010702001796" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;">
+    <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51010702001796"
+       style="display:inline-block;text-decoration:none;height:20px;line-height:20px;">
       <img src="http://www.beian.gov.cn/img/ghs.png" style="float:left;"/>
       <p class="text-bottom">川公网安备 51010702001796号</p>
     </a>

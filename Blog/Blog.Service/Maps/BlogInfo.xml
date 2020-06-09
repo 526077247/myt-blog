@@ -102,6 +102,9 @@
         <isNotEmpty prepend="AND" property="title" >
           title = #title#
         </isNotEmpty>
+        <isNotEmpty prepend="AND" property="title_LIKE" >
+          title like concat('%', #title_LIKE#, '%')
+        </isNotEmpty>
         <isNotEmpty prepend="AND" property="createTime_S" >
           createTime between #createTime_S# and #createTime_E#
         </isNotEmpty>
@@ -138,6 +141,9 @@
         </isNotEmpty>
         <isNotEmpty prepend="AND" property="title" >
           title = #title#
+        </isNotEmpty>
+        <isNotEmpty prepend="AND" property="title_LIKE" >
+          title like concat('%', #title_LIKE#, '%')
         </isNotEmpty>
         <isNotEmpty prepend="AND" property="createTime_S" >
           createTime between #createTime_S# and #createTime_E#

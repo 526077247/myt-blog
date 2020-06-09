@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {BlogInfo} from '../../domain/bloginfo.domain';
 import {BlogInfoMgeSvr} from '../../service/blog-info-mge.service';
-import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
+import {ActivatedRoute, NavigationEnd, Params, Router} from '@angular/router';
 import {TypeMeaningService} from '../../service/type-meaning.service';
 import {Title} from '@angular/platform-browser';
 
@@ -17,6 +17,7 @@ export class ListComponent implements OnInit {
   public pageCount = 1;
   public pageNow = 1;
   public pageSize = 15;
+  public keyword = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -25,8 +26,12 @@ export class ListComponent implements OnInit {
     private typeMeaningService: TypeMeaningService,
     private titleService: Title,
   ) {
+
     router.events.subscribe(Event => {
       this.isLoading = true;
+      this.route.queryParams.subscribe((params: Params) => {
+        this.keyword = params.key || '';
+      });
       if (Event instanceof NavigationEnd) {
         const type = Number.parseInt(this.route.snapshot.paramMap.get('type'), 10);
         if (!this.type || this.type !== type) {
@@ -47,7 +52,7 @@ export class ListComponent implements OnInit {
   * */
   public getBlogList(): void {
     this.checkPage();
-    this.blogInfoMgeSvr.QueryList((this.pageNow - 1) * this.pageSize, this.pageSize, this.type ? this.type.toString() : '').then(res => {
+    this.blogInfoMgeSvr.QueryList((this.pageNow - 1) * this.pageSize, this.pageSize, this.type ? this.type.toString() : '', this.keyword).then(res => {
       this.blogs = res.list;
       this.pageSize = res.pageSize;
       this.isLoading = false;

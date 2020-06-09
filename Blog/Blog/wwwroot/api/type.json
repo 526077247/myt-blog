@@ -5,7 +5,7 @@
     "icon": "icon-cpp"
   },
   {
-    "name": ".NetCore",
+    "name": "C#",
     "id": 2,
     "icon": "icon-csharp"
   },
@@ -25,11 +25,6 @@
     "icon": "icon-nginx"
   },
   {
-    "name": "Unity3D",
-    "id": 6,
-    "icon": "icon-u3d"
-  },
-  {
     "name": "Node",
     "id": 7,
     "icon": "icon-node"
@@ -38,5 +33,15 @@
     "name": "Vue",
     "id": 8,
     "icon": "icon-vue"
+  },
+  {
+    "name": "Python",
+    "id": 9,
+    "icon": "icon-python"
+  },
+  {
+    "name": "Others",
+    "id": 10,
+    "icon": "icon-other"
   }
 ]

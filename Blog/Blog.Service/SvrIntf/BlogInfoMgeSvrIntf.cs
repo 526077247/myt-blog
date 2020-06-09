@@ -52,11 +52,12 @@ namespace Blog.Service
         /// <param name="start">起始位置</param>
         /// <param name="pageSize">分页大小</param>
         /// <param name="types">类型字符串','隔开</param>
+        /// <param name="key">标题关键字</param>
         /// <param name="createTimeS">创建时间起</param>
         /// <param name="createTimeE">创建时间止</param>
         /// <returns></returns>
         [PublishMethod]
-        ResultList<BlogInfo> QueryList(int start, int pageSize, string types, string createTimeS = "2000-01-01T00:00:00", string createTimeE = "2099-01-01T00:00:00");
+        ResultList<BlogInfo> QueryList(int start, int pageSize, string types,string key = "", string createTimeS = "2000-01-01T00:00:00", string createTimeE = "2099-01-01T00:00:00");
 
         /// <summary>
         /// 取相邻记录
@@ -65,5 +66,6 @@ namespace Blog.Service
         /// <returns></returns>
         [PublishMethod]
         ResultList<BlogInfo> GetAdjacentBlogInfo(BlogInfo blogInfo);
+    
     }
 }

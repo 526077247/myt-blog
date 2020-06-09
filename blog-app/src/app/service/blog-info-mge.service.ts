@@ -88,12 +88,15 @@ export class BlogInfoMgeSvr {
     });
   }
 
-  QueryList(start: number, pageSize: number, types: string, createTimeS?: string, createTimeE?: string): Promise<DataList> {
+  QueryList(start: number, pageSize: number, types: string, key?: string, createTimeS?: string, createTimeE?: string): Promise<DataList> {
     return new Promise((resolve, reject) => {
       let httpParams = new HttpParams()
         .append('start', start.toString())
         .append('pageSize', pageSize.toString())
         .append('types', types || '');
+      if (key !== undefined) {
+        httpParams = httpParams.append('key', key || '');
+      }
       if (createTimeS !== undefined) {
         httpParams = httpParams.append('createTimeS', createTimeS || '');
       }
