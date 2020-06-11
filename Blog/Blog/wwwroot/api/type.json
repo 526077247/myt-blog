@@ -2,46 +2,73 @@
   {
     "name": "C++",
     "id": 1,
-    "icon": "icon-cpp"
+    "icon": "icon-cpp",
+    "state":0
   },
   {
     "name": "C#",
     "id": 2,
-    "icon": "icon-csharp"
+    "icon": "icon-csharp",
+    "state":0
   },
   {
     "name": "Angular",
     "id": 3,
-    "icon": "icon-angular"
+    "icon": "icon-angular",
+    "state":0
   },
   {
     "name": "MySQL",
     "id": 4,
-    "icon": "icon-mysql"
+    "icon": "icon-mysql",
+    "state":0
   },
   {
     "name": "Nginx",
     "id": 5,
-    "icon": "icon-nginx"
+    "icon": "icon-nginx",
+    "state":1
   },
   {
     "name": "Node",
     "id": 7,
-    "icon": "icon-node"
+    "icon": "icon-node",
+    "state":1
   },
   {
     "name": "Vue",
     "id": 8,
-    "icon": "icon-vue"
+    "icon": "icon-vue",
+    "state":0
   },
   {
     "name": "Python",
     "id": 9,
-    "icon": "icon-python"
+    "icon": "icon-python",
+    "state":0
   },
   {
-    "name": "Others",
+    "name": "Git",
     "id": 10,
-    "icon": "icon-other"
+    "icon": "icon-git",
+    "state":1
+  },
+  {
+    "name": "Redis",
+    "id": 11,
+    "icon": "icon-redis",
+    "state":1
+  },
+  {
+    "name": "Docker",
+    "id": 12,
+    "icon": "icon-docker",
+    "state":1
+  },
+  {
+    "name": "Other",
+    "id": 13,
+    "icon": "icon-other",
+    "state":1
   }
 ]

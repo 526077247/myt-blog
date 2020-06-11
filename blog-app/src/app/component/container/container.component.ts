@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {TypeMeaningService} from 'src/app/service/type-meaning.service';
+import {Type} from '../../domain/type.domain';
 
 @Component({
   selector: 'app-container',
@@ -29,7 +30,7 @@ export class ContainerComponent implements OnInit {
   /*
   * 获取标题列表
   * */
-  public getTitle(): number[] {
-    return this.typeMeaningService.getTitle();
+  public getTypes(): Type[] {
+    return this.typeMeaningService.getTypes();
   }
 }

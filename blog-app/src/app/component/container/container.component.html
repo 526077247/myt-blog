@@ -1,8 +1,12 @@
 <header class="container-header">
   <h1 class="container-header-title">
     <a class="container-header-title-link ml-5 d-inline-block" routerLink="/">首页</a>
-    <a class="container-header-title-link ml-5 d-inline-block" *ngFor="let item of getTitle()"
-       [routerLink]="'/list/'+item">{{getName(item)}}</a>
+    <ng-container *ngFor="let item of getTypes()">
+      <a class="container-header-title-link ml-5 d-inline-block" *ngIf="item.state===0"
+         [routerLink]="'/list/'+item.id">{{item.name}}</a>
+    </ng-container>
+    <a class="container-header-title-link ml-5 d-inline-block"
+       routerLink="/list/other">其他</a>
     <span class="container-header-controls">
       <a href="javascript:" class="container-header-control " [class.active]="isOpen"
          routerLink="/edit">

@@ -12,7 +12,7 @@ import {Title} from '@angular/platform-browser';
 })
 export class ListComponent implements OnInit {
   public blogs: BlogInfo[] = [];
-  public type: number;
+  public type: string;
   public isLoading: boolean;
   public pageCount = 1;
   public pageNow = 1;
@@ -33,12 +33,19 @@ export class ListComponent implements OnInit {
         this.keyword = params.key || '';
       });
       if (Event instanceof NavigationEnd) {
-        const type = Number.parseInt(this.route.snapshot.paramMap.get('type'), 10);
-        if (!this.type || this.type !== type) {
-          this.type = type;
-          this.getBlogList();
-          this.titleService.setTitle(this.typeMeaningService.getTypeName(this.type));
+        const typeStr = this.route.snapshot.paramMap.get('type');
+        const type = Number.parseInt(typeStr, 10);
+        if (typeStr === 'other') {
+          this.type = this.typeMeaningService.getNoShowType();
+          this.titleService.setTitle('其他');
+        } else if (!type) {
+          this.type = '';
+          this.titleService.setTitle('全部');
+        } else if (!this.type || this.type !== type.toString()) {
+          this.type = type.toString();
+          this.titleService.setTitle(this.typeMeaningService.getTypeName(Number.parseInt(this.type, 10)));
         }
+        this.getBlogList();
       }
     });
   }
@@ -52,7 +59,7 @@ export class ListComponent implements OnInit {
   * */
   public getBlogList(): void {
     this.checkPage();
-    this.blogInfoMgeSvr.QueryList((this.pageNow - 1) * this.pageSize, this.pageSize, this.type ? this.type.toString() : '', this.keyword).then(res => {
+    this.blogInfoMgeSvr.QueryList((this.pageNow - 1) * this.pageSize, this.pageSize, this.type, this.keyword).then(res => {
       this.blogs = res.list;
       this.pageSize = res.pageSize;
       this.isLoading = false;
@@ -113,7 +120,12 @@ export class ListComponent implements OnInit {
     * 取展示名称
     * */
   public getShowName(): string {
-    return this.typeMeaningService.getTypeName(this.type);
+    if (!this.type) {
+      return '全部';
+    } else if (this.type.includes(',')) {
+      return '其他';
+    }
+    return this.typeMeaningService.getTypeName(Number.parseInt(this.type, 10));
   }
 
   /*

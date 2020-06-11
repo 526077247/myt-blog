@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Result} from '../domain/result.domain';
 import {LoginResult} from '../domain/loginresult.domain';
+import {Type} from "../domain/type.domain";
 
 @Injectable({
   providedIn: 'root'
@@ -9,11 +10,11 @@ import {LoginResult} from '../domain/loginresult.domain';
 export class TypeMeaningService {
   baseurl: string;
   private titles: number[] = [];
-  private titleJson: any[] = [];
+  private titleJson: Type[] = [];
 
   constructor(private httpClient: HttpClient) {
     this.baseurl = '/api/type.json';
-    this.httpClient.get<any[]>(this.baseurl).subscribe(res => {
+    this.httpClient.get<Type[]>(this.baseurl).subscribe(res => {
       this.titleJson = res;
     });
   }
@@ -30,6 +31,7 @@ export class TypeMeaningService {
     }
     return;
   }
+
   /**
    * 获取类型图标
    * @param type 类型
@@ -42,6 +44,7 @@ export class TypeMeaningService {
     }
     return;
   }
+
   /**
    * 获取类型列表
    */
@@ -66,5 +69,26 @@ export class TypeMeaningService {
     return res;
   }
 
+  /**
+   * 获取类型列表
+   */
+  public getTypes(): Type[] {
+    return this.titleJson;
+  }
 
+  /**
+   * 获取不展示类型id
+   */
+  public getNoShowType(): string {
+    let res = '';
+    for (const item of this.titleJson) {
+      if (item.state !== 0) {
+        res += item.id + ',';
+      }
+    }
+    if (res.length > 0) {
+      res = res.substr(0, res.length - 1);
+    }
+    return res;
+  }
 }
