@@ -107,6 +107,6 @@ export class ShowComponent implements OnInit {
    * 是否登录
    */
   public isLogin(): boolean {
-    return this.loginSvr.isLogin;
+    return this.loginSvr.userInfo.Name === this.blogInfo.auther;
   }
 }

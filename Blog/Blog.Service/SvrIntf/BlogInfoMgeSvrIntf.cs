@@ -14,7 +14,6 @@ namespace Blog.Service
         /// <param name="blogInfo">文章信息</param>
         /// <returns></returns>
         [PublishMethod]
-        [CheckLogin]
         BlogInfo Add(string token, BlogInfo blogInfo);
 
         /// <summary>
@@ -25,7 +24,6 @@ namespace Blog.Service
         /// <param name="blogInfo">文章信息</param>
         /// <returns></returns>
         [PublishMethod]
-        [CheckLogin]
         BlogInfo Update(string token, string id, BlogInfo blogInfo);
 
         /// <summary>
@@ -35,7 +33,6 @@ namespace Blog.Service
         /// <param name="id">文章信息标识</param>
         /// <returns></returns>
         [PublishMethod]
-        [CheckLogin]
         int Delete(string token, string id);
 
         /// <summary>

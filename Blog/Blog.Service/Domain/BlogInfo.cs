@@ -33,6 +33,10 @@ namespace Blog.Service
         /// 当前状态
         /// </summary>
         public int state { get; set; }
+        /// <summary>
+        /// 作者
+        /// </summary>
+        public string auther { get; set; }
     }
 
     

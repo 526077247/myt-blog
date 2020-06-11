@@ -17,7 +17,7 @@
       <div class="jumbotron jumbotron-fluid">
         <div class="container">
           <h1 class="display-4">{{blogInfo.title}}</h1>
-          <p class="lead">{{blogInfo.createTime|date}}</p>
+          <p class="lead">{{blogInfo.createTime|date}} by {{blogInfo.auther}}</p>
           <ng-container *ngIf="isLogin()">
             <span class="mx-1 ionicon ion-ios-settings" tooltip="修改"
                   (click)="edit()" tooltipPlacement="bottom"></span>

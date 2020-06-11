@@ -1,5 +1,6 @@
 ﻿using IBatisNet.DataAccess;
 using service.core;
+using sso.service;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,12 +17,14 @@ namespace Blog.Service
 
         private readonly IDaoManager daoManager = null;
         private readonly IBlogInfoDao _BlogInfoDao = null;
+        private ILoginMgeSvr _LoginMgeSvr = null;
         /// <summary>
         /// 构造函数
         /// </summary>
         public BlogInfoMgeSvr() : base()
         {
             daoManager = ServiceConfig.GetInstance().DaoManager;
+            _LoginMgeSvr = ServiceManager.GetService<ILoginMgeSvr>("LoginMgeSvr");
             _BlogInfoDao = (IBlogInfoDao)daoManager.GetDao(typeof(IBlogInfoDao));
         }
 
@@ -37,11 +40,16 @@ namespace Blog.Service
         /// <param name="blogInfo">文章信息</param>
         /// <returns></returns>
         [PublishMethod]
-        [CheckLogin]
         public BlogInfo Add(string token, BlogInfo blogInfo)
         {
+            if(blogInfo.content.Length>50000||blogInfo.title.Length>50)
+                throw new ServiceException((int)TYPE_OF_RESULT_TYPE.failure, "字数过长");
+            var info = _LoginMgeSvr.GetLoginInfo(token);
+            if (string.IsNullOrEmpty(info.Name))
+                throw new ServiceException((int)TYPE_OF_RESULT_TYPE.offline, "未登录");
             blogInfo.id = Guid.NewGuid().ToString();
             blogInfo.createTime = DateTime.Now;
+            blogInfo.auther = info.Name;
             _BlogInfoDao.Insert(blogInfo);
             return blogInfo;
         }
@@ -54,12 +62,19 @@ namespace Blog.Service
         /// <param name="blogInfo">文章信息</param>
         /// <returns></returns>
         [PublishMethod]
-        [CheckLogin]
         public BlogInfo Update(string token, string id, BlogInfo blogInfo)
         {
+            if (blogInfo.content.Length > 50000 || blogInfo.title.Length > 50)
+                throw new ServiceException((int)TYPE_OF_RESULT_TYPE.failure, "字数过长");
+            var info = _LoginMgeSvr.GetLoginInfo(token);
+            if (string.IsNullOrEmpty(info.Name))
+                throw new ServiceException((int)TYPE_OF_RESULT_TYPE.offline, "未登录");
             BlogInfo oldBlogInfo = Get(id);
+            if(oldBlogInfo.auther != info.Name)
+                throw new ServiceException((int)TYPE_OF_RESULT_TYPE.failure, "无权限");
             if (!string.IsNullOrEmpty(oldBlogInfo?.id))
             {
+                blogInfo.auther = oldBlogInfo.auther;
                 blogInfo.id = id;
                 blogInfo.createTime = oldBlogInfo.createTime;
                 _BlogInfoDao.Update(blogInfo);
@@ -75,11 +90,15 @@ namespace Blog.Service
         /// <param name="id">文章信息标识</param>
         /// <returns></returns>
         [PublishMethod]
-        [CheckLogin]
         public int Delete(string token, string id)
         {
-            BlogInfo blogInfo = new BlogInfo { id = id };
-            return _BlogInfoDao.Delete(blogInfo);
+            var info = _LoginMgeSvr.GetLoginInfo(token);
+            if (string.IsNullOrEmpty(info.Name))
+                throw new ServiceException((int)TYPE_OF_RESULT_TYPE.offline, "未登录");
+            BlogInfo oldBlogInfo = Get(id);
+            if(oldBlogInfo.auther == info.Name)
+                return _BlogInfoDao.Delete(oldBlogInfo);
+            throw new ServiceException((int)TYPE_OF_RESULT_TYPE.failure, "无权限");
         }
 
         /// <summary>
@@ -148,6 +167,7 @@ namespace Blog.Service
             Hashtable para = new Hashtable();
             para.Add("type", blogInfo.type);
             para.Add("createTime", blogInfo.createTime);
+            para.Add("auther", blogInfo.auther);
             var list = _BlogInfoDao.GetAdjacentBlogInfo(para, 0, -1);
             if (list.Count > 0)
             {

@@ -10,7 +10,7 @@ export class BlogInfo {
   createTime: string; // 时间
   type: number; // 类型
   state: number; // 状态
-
+  auther: string; // 作者
   constructor(options: {
     id?: string;
     title?: string;
@@ -18,6 +18,7 @@ export class BlogInfo {
     createTime?: string;
     type?: number;
     state?: number; // 状态
+    auther?: string;
   } = {}) {
     this.id = options.id || '';
     this.title = options.title || '';
@@ -25,7 +26,7 @@ export class BlogInfo {
     this.createTime = options.createTime || Util.dateFormat(new Date(), 'yyyy-MM-dd hh:mm:ss');
     this.type = !options.type ? 0 : Number.parseFloat(options.type.toString());
     this.state = !options.state ? 0 : Number.parseFloat(options.state.toString());
-
+    this.auther = options.auther || '';
 
   }
 }

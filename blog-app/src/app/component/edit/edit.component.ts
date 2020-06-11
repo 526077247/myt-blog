@@ -67,6 +67,14 @@ export class EditComponent implements OnInit {
    * 修改或添加博客
    */
   public addOrUpdateBlogInfo(): void {
+    if (this.blogInfo.content.length > 50000) {
+      this.snackBar.open('内容不能超过5w字', '', {duration: 2000});
+      return;
+    }
+    if (this.blogInfo.title.length > 50) {
+      this.snackBar.open('标题不能超过50字', '', {duration: 2000});
+      return;
+    }
     if (this.id) {
       this.updateBlogInfo();
     } else {

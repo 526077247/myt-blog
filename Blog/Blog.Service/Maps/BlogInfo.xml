@@ -18,6 +18,7 @@
       <result property="createTime" column="createTime" />
       <result property="type" column="type" />
       <result property="state" column="state" />
+      <result property="auther" column="auther" />
     </resultMap>
   </resultMaps>
 
@@ -30,6 +31,7 @@
       <parameter property="createTime" column="createTime" />
       <parameter property="type" column="type" />
       <parameter property="state" column="state" />
+      <parameter property="auther" column="auther" />
     </parameterMap>
 
     <parameterMap id="UpdateBlogInfoParams" extends="BlogInfoParams" class="BlogInfo">
@@ -52,7 +54,7 @@
     </select>
 
     <select id="GetBlogInfoByPara"  parameterClass="BlogInfo" resultMap="BlogInfoResult">
-      SELECT id,title,createTime,type,state,'' as content
+      SELECT id,title,createTime,type,state,'' as content,auther
       FROM BlogInfo
       <dynamic prepend="WHERE" >
         <isNotEmpty prepend="AND" property="id" >
@@ -73,12 +75,15 @@
         <isNotEmpty prepend="AND" property="state" >
           state =  #state#
         </isNotEmpty>
+        <isNotEmpty prepend="AND" property="auther" >
+          auther =  #auther#
+        </isNotEmpty>
       </dynamic>
 
     </select>
 
     <select id="GetBlogInfoList" parameterClass="string" resultMap="BlogInfoResult">
-      SELECT id,title,createTime,type,state,'' as content
+      SELECT id,title,createTime,type,state,'' as content,auther
       FROM BlogInfo
       <dynamic prepend="Order By" >
         <isNotEmpty prepend="Order By" property="_OrderBy">
@@ -117,23 +122,26 @@
         <isNotEmpty prepend="AND" property="state" >
           state =  #state#
         </isNotEmpty>
+        <isNotEmpty prepend="AND" property="auther" >
+          auther =  #auther#
+        </isNotEmpty>
       </dynamic>
     </select>
     
     <select id="GetAdjacentBlogInfo" parameterClass="Hashtable" resultMap="BlogInfoResult">
       <![CDATA[
-        (SELECT id,title,createTime,type,state,'' as content
+        (SELECT id,title,createTime,type,state,'' as content,auther
         FROM BlogInfo
-        where createTime < #createTime# and type = #type# order by createTime desc limit 1)
+        where createTime < #createTime# and type = #type# and auther = #auther# order by createTime desc limit 1)
         union
-        (SELECT id,title,createTime,type,state,'' as content
+        (SELECT id,title,createTime,type,state,'' as content,auther
         FROM BlogInfo
-        where createTime > #createTime# and type = #type# order by createTime limit 1)
+        where createTime > #createTime# and type = #type# and auther = #auther# order by createTime limit 1)
       ]]>
     </select>
 
     <select id="QueryBlogInfoList" parameterClass="Hashtable" resultMap="BlogInfoResult">
-      SELECT id,title,createTime,type,state,'' as content
+      SELECT id,title,createTime,type,state,'' as content,auther
       FROM BlogInfo
       <dynamic prepend="WHERE" >
         <isNotEmpty prepend="AND" property="id" >
@@ -156,6 +164,9 @@
         </isNotEmpty>
         <isNotEmpty prepend="AND" property="state" >
           state =  #state#
+        </isNotEmpty>
+        <isNotEmpty prepend="AND" property="auther" >
+          auther =  #auther#
         </isNotEmpty>
       </dynamic>
       <dynamic prepend="Order By" >
@@ -199,6 +210,9 @@
         <isNotEmpty prepend="AND" property="state" >
           state =  #state#
         </isNotEmpty>
+        <isNotEmpty prepend="AND" property="auther" >
+          auther =  #auther#
+        </isNotEmpty>
       </dynamic>
     </select>
 
@@ -209,7 +223,8 @@
       content = ?,
       createTime = ?,
       type = ?,
-      state = ?
+      state = ?,
+      auther = ?
       WHERE id = ?;
     </update>
 

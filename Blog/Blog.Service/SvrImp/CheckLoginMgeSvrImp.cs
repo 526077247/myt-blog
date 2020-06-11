@@ -17,7 +17,7 @@ namespace Blog.Service
         public bool CheckLogin(string token)
         {
             var res = _LoginMgeSvr.GetLoginInfo(token);
-            return res.Name == "526077247";
+            return !string.IsNullOrEmpty(res.Token);
         }
     }
 }
