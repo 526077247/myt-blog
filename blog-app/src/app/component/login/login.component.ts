@@ -38,4 +38,8 @@ export class LoginComponent implements OnInit {
       this.login();
     }
   }
+
+  public register() {
+    window.location.href = 'https://' + window.location.hostname + ':8080/register?redirect_url=' + encodeURIComponent(window.location.href);
+  }
 }

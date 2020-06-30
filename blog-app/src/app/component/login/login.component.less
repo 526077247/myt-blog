@@ -90,3 +90,24 @@
     color: #fff;
   }
 }
+.btn-register {
+  background: @borderColor;
+  border: 1px solid darken(@borderColor, 10%);
+  color: #fff;
+  box-shadow: none;
+  font-size: 1.75rem;
+
+  &:hover {
+    background: lighten(@borderColor, 10%);
+    color: #fff;
+  }
+
+  &:active {
+    color: #fff;
+    background: darken(@borderColor, 10%);
+  }
+
+  &:focus {
+    color: #fff;
+  }
+}
