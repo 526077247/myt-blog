@@ -32,16 +32,16 @@
 |         └BlogInfoDao.cs
 ├─Blog（发布方式及配置）
 |  ├─appsettings.Development.json
-|  ├─appsettings.json
-|  ├─Components.xml
-|  ├─hosting.json
+|  ├─appsettings.json(项目配置文件)
+|  ├─Components.xml(castle配置文件)
+|  ├─hosting.json(启动端口配置文件)
 |  ├─Program.cs
 |  ├─Startup.cs
 |  ├─wwwroot
 |  |    └─api（需要发布的接口）
 |  |       ├─BlogInfoMgeSvr.json（调用接口方式:/api/BlogInfoMgeSvr.rsfs/方法名?方法参数）
 |  |       └type.json(配置文件)
-|  ├─config
+|  ├─config(ibatis配置文件)
 |  |   ├─dao.config
 |  |   ├─providers.config
 |  |   └SqlMap.config
