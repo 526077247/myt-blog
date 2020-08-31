@@ -1,4 +1,5 @@
-﻿using service.core;
+﻿using Account.Service;
+using service.core;
 using sso.service;
 using System;
 using System.Collections.Generic;
@@ -8,15 +9,16 @@ namespace Blog.Service
 {
     public class CheckLoginMgeSvr:ICheckLoginMgeSvr
     {
-        private ILoginMgeSvr _LoginMgeSvr = null;
+
+        private ISessionMgeSvr _SessionMgeSvr = null;
         public CheckLoginMgeSvr() : base()
         {
-            _LoginMgeSvr = ServiceManager.GetService<ILoginMgeSvr>("LoginMgeSvr");
+            _SessionMgeSvr = ServiceManager.GetService<ISessionMgeSvr>("SessionMgeSvr");
         }
 
         public bool CheckLogin(string token)
         {
-            var res = _LoginMgeSvr.GetLoginInfo(token);
+            var res = _SessionMgeSvr.Get(token);
             return !string.IsNullOrEmpty(res.Token);
         }
     }

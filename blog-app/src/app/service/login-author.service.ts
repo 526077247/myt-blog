@@ -27,7 +27,7 @@ export class LoginAuthorService {
   get userInfo() {
     const res = new LoginResult(JSON.parse(this.cookie.cookie(SESSION_NAME) || '{}'));
     if (!res.Token) {
-      this.router.navigateByUrl('/login');
+      location.href='/api/auth2login.midw?redirectUrl='+encodeURIComponent(location.href);
     }
     return res;
   }

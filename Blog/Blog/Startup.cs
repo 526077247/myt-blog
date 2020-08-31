@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using service.core;
-
+using Account.Service;
 namespace Blog
 {
     public class Startup
@@ -39,7 +39,7 @@ namespace Blog
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseSSO("/api/auth2login.midw", "https://account.mayuntao.xyz", "_MytBlog_Session_Token_Info_");
             app.UseHttpManager();
             app.UseStaticFiles();
         }

@@ -1,4 +1,5 @@
-﻿using IBatisNet.DataAccess;
+﻿using Account.Service;
+using IBatisNet.DataAccess;
 using service.core;
 using sso.service;
 using System;
@@ -17,14 +18,14 @@ namespace Blog.Service
 
         private readonly IDaoManager daoManager = null;
         private readonly IBlogInfoDao _BlogInfoDao = null;
-        private ILoginMgeSvr _LoginMgeSvr = null;
+        private ISessionMgeSvr _SessionMgeSvr = null;
         /// <summary>
         /// 构造函数
         /// </summary>
         public BlogInfoMgeSvr() : base()
         {
             daoManager = ServiceConfig.GetInstance().DaoManager;
-            _LoginMgeSvr = ServiceManager.GetService<ILoginMgeSvr>("LoginMgeSvr");
+            _SessionMgeSvr = ServiceManager.GetService<ISessionMgeSvr>("SessionMgeSvr");
             _BlogInfoDao = (IBlogInfoDao)daoManager.GetDao(typeof(IBlogInfoDao));
         }
 
@@ -44,7 +45,7 @@ namespace Blog.Service
         {
             if(blogInfo.content.Length>50000||blogInfo.title.Length>50)
                 throw new ServiceException((int)TYPE_OF_RESULT_TYPE.failure, "字数过长");
-            var info = _LoginMgeSvr.GetLoginInfo(token);
+            var info = _SessionMgeSvr.Get(token);
             if (string.IsNullOrEmpty(info.Name))
                 throw new ServiceException((int)TYPE_OF_RESULT_TYPE.offline, "未登录");
             blogInfo.id = Guid.NewGuid().ToString();
@@ -66,7 +67,7 @@ namespace Blog.Service
         {
             if (blogInfo.content.Length > 50000 || blogInfo.title.Length > 50)
                 throw new ServiceException((int)TYPE_OF_RESULT_TYPE.failure, "字数过长");
-            var info = _LoginMgeSvr.GetLoginInfo(token);
+            var info = _SessionMgeSvr.Get(token);
             if (string.IsNullOrEmpty(info.Name))
                 throw new ServiceException((int)TYPE_OF_RESULT_TYPE.offline, "未登录");
             BlogInfo oldBlogInfo = Get(id);
@@ -92,7 +93,7 @@ namespace Blog.Service
         [PublishMethod]
         public int Delete(string token, string id)
         {
-            var info = _LoginMgeSvr.GetLoginInfo(token);
+            var info = _SessionMgeSvr.Get(token);
             if (string.IsNullOrEmpty(info.Name))
                 throw new ServiceException((int)TYPE_OF_RESULT_TYPE.offline, "未登录");
             BlogInfo oldBlogInfo = Get(id);
